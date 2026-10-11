@@ -96,6 +96,8 @@ class _AddEditProductScreenState
       );
 
       if (codeExists) {
+        if (!mounted) return;
+
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text(
@@ -203,7 +205,7 @@ class _AddEditProductScreenState
               const SizedBox(height: 15),
 
               DropdownButtonFormField<String>(
-                value: selectedCategory,
+                initialValue: selectedCategory,
                 decoration: const InputDecoration(
                   labelText: 'Category',
                   border: OutlineInputBorder(),
@@ -295,7 +297,7 @@ class _AddEditProductScreenState
               const SizedBox(height: 15),
 
               DropdownButtonFormField<String>(
-                value: selectedStatus,
+                initialValue: selectedStatus,
                 decoration: const InputDecoration(
                   labelText: 'Status',
                   border: OutlineInputBorder(),
