@@ -6,6 +6,7 @@
 ## ✅ Group Administration  
 - [ ] Group size: **minimum 5, maximum 10 members**  
 - [ ] Document each member’s **student number and name** (in submission document and as comments in Dart source files)  
+- **Communication status (14 October 2026):** LK Radebe (221009560), NN Jonathan (224028270), and Ndlovu B (224098702) have remained in contact. The remaining group members have not responded to recent communications, and the group has been unable to reach them for an extended period.
 
 ## ✅ Application Overview  
 - [x] Build a **Flutter Retail Inventory Management App** for SmartMart Retailers  
