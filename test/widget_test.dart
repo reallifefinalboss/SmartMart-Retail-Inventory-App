@@ -40,4 +40,22 @@ void main() {
     expect(find.text('Add Product'), findsOneWidget);
     expect(find.text('Edit Product'), findsNothing);
   });
+
+  testWidgets('Product ID visibility can be toggled',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const RetailInventoryApp());
+    await tester.pumpAndSettle();
+
+    expect(find.byTooltip('Hide product IDs'), findsOneWidget);
+
+    await tester.tap(find.byTooltip('Hide product IDs'));
+    await tester.pumpAndSettle();
+
+    expect(find.byTooltip('Show product IDs'), findsOneWidget);
+
+    await tester.tap(find.byTooltip('Show product IDs'));
+    await tester.pumpAndSettle();
+
+    expect(find.byTooltip('Hide product IDs'), findsOneWidget);
+  });
 }

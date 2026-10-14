@@ -14,6 +14,7 @@ class ProductListScreen extends StatefulWidget {
 
 class _ProductListScreenState extends State<ProductListScreen> {
   List<Product> products = [];
+  bool showProductIds = true;
 
   @override
   void initState() {
@@ -140,6 +141,19 @@ class _ProductListScreenState extends State<ProductListScreen> {
       appBar: AppBar(
         title: const Text('SmartMart Retailers'),
         centerTitle: true,
+        actions: [
+          IconButton(
+            tooltip: showProductIds ? 'Hide product IDs' : 'Show product IDs',
+            onPressed: () {
+              setState(() {
+                showProductIds = !showProductIds;
+              });
+            },
+            icon: Icon(
+              showProductIds ? Icons.visibility : Icons.visibility_off,
+            ),
+          ),
+        ],
       ),
 
       body: products.isEmpty
@@ -173,11 +187,11 @@ class _ProductListScreenState extends State<ProductListScreen> {
                     ),
 
                     subtitle: Text(
-                      '${product.productCode}\n'
+                      '${showProductIds ? 'ID: ${product.productCode}\n' : ''}'
                       'R${product.price.toStringAsFixed(2)}',
                     ),
 
-                    isThreeLine: true,
+                    isThreeLine: showProductIds,
 
                     trailing: Text(
                       product.status,
