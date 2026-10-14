@@ -1,0 +1,77 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "App (debug)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart"
+    },
+    {
+      "name": "App (dev flavor)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_dev.dart",
+      "args": [
+        "--flavor", "dev",
+        "--dart-define=API_URL=https://dev.example.com",
+        "--dart-define=ENV=dev"
+      ]
+    },
+    {
+      "name": "App (prod flavor)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_prod.dart",
+      "args": ["--flavor", "prod", "--dart-define=ENV=prod"]
+    },
+    {
+      "name": "App (profile)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile",
+      "program": "lib/main.dart"
+    },
+    {
+      "name": "App (release)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release",
+      "program": "lib/main.dart"
+    },
+    {
+      "name": "App (Linux desktop)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "deviceId": "linux"
+    },
+    {
+      "name": "App (Chrome)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "deviceId": "chrome",
+      "args": ["--web-port", "5000"]
+    },
+    {
+      "name": "Package (monorepo)",
+      "request": "launch",
+      "type": "dart",
+      "cwd": "packages/my_app",
+      "program": "lib/main.dart"
+    },
+    {
+      "name": "Attach to running app",
+      "request": "attach",
+      "type": "dart"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Android + Chrome",
+      "configurations": ["App (debug)", "App (Chrome)"],
+      "stopAll": true
+    }
+  ]
+}
