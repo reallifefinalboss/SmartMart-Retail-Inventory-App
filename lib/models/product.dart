@@ -44,22 +44,67 @@ class Product {
   static String getImageForProduct(String code) {
     switch (code) {
       case 'PRD001':
-        return 'assets/coca_cola.jpg';
+        return 'assets/images/products/coca_cola.jpg';
 
       case 'PRD002':
-        return 'assets/bread.jpg';
+        return 'assets/images/products/bread.jpg';
 
       case 'PRD003':
-        return 'assets/milk.jpg';
+        return 'assets/images/products/milk.jpg';
 
       case 'PRD004':
-        return 'assets/washing_powder.jpg';
+        return 'assets/images/products/washing_powder.jpg';
 
       case 'PRD005':
-        return 'assets/keyboard.jpg';
+        return 'assets/images/products/keyboard.jpg';
+
+      case 'PRD006':
+        return 'assets/images/products/chicken_breast.jpg';
+
+      case 'PRD007':
+        return 'assets/images/products/apple.jpg';
+
+      case 'PRD008':
+        return 'assets/images/products/bananas.jpg';
+
+      case 'PRD009':
+        return 'assets/images/products/coffee_beans.jpg';
+
+      case 'PRD010':
+        return 'assets/images/products/desk_lamp.jpg';
+
+      case 'PRD011':
+        return 'assets/images/products/dish_soap.jpg';
+
+      case 'PRD012':
+        return 'assets/images/products/hand_sanitizer.jpg';
+
+      case 'PRD013':
+        return 'assets/images/products/laundry_detergent.jpg';
+
+      case 'PRD014':
+        return 'assets/images/products/led_bulb.jpg';
+
+      case 'PRD015':
+        return 'assets/images/products/notebook.jpg';
+
+      case 'PRD016':
+        return 'assets/images/products/orange_juice.jpg';
+
+      case 'PRD017':
+        return 'assets/images/products/potato_chips.jpg';
+
+      case 'PRD018':
+        return 'assets/images/products/shampoo.jpg';
+
+      case 'PRD019':
+        return 'assets/images/products/wireless_mouse.jpg';
+
+      case 'PRD020':
+        return 'assets/images/products/yogurt.jpg';
 
       default:
-        return 'assets/default.jpg';
+        return 'assets/images/products/default.jpg';
     }
   }
 }

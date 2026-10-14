@@ -45,7 +45,7 @@ class _AddEditProductScreenState
     'Out of Stock',
   ];
 
-  String selectedImage = 'assets/default.jpg';
+  String selectedImage = 'assets/images/products/default.jpg';
 
   @override
   void initState() {
@@ -338,16 +338,32 @@ class _AddEditProductScreenState
                 value: selectedImage,
                 isExpanded: true,
                 items: [
-                  'assets/coca_cola.jpg',
-                  'assets/bread.jpg',
-                  'assets/milk.jpg',
-                  'assets/washing_powder.jpg',
-                  'assets/keyboard.jpg',
-                  'assets/default.jpg',
+                  'apple.jpg',
+                  'bananas.jpg',
+                  'bread.jpg',
+                  'chicken_breast.jpg',
+                  'coca_cola.jpg',
+                  'coffee_beans.jpg',
+                  'default.jpg',
+                  'desk_lamp.jpg',
+                  'dish_soap.jpg',
+                  'hand_sanitizer.jpg',
+                  'keyboard.jpg',
+                  'laundry_detergent.jpg',
+                  'led_bulb.jpg',
+                  'milk.jpg',
+                  'notebook.jpg',
+                  'orange_juice.jpg',
+                  'potato_chips.jpg',
+                  'shampoo.jpg',
+                  'washing_powder.jpg',
+                  'wireless_mouse.jpg',
+                  'yogurt.jpg',
                 ].map((image) {
+                  final assetPath = 'assets/images/products/$image';
                   return DropdownMenuItem(
-                    value: image,
-                    child: Text(image),
+                    value: assetPath,
+                    child: Text(image.replaceAll('.jpg', '').replaceAll('_', ' ')),
                   );
                 }).toList(),
                 onChanged: (value) {

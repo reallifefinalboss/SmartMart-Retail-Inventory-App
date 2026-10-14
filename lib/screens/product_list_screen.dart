@@ -34,7 +34,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
           category: 'Beverages',
           price: 24.99,
           quantity: 35,
-          image: 'assets/coca_cola.jpg',
+          image: 'assets/images/products/coca_cola.jpg',
           status: 'Available',
         ),
         Product(
@@ -43,7 +43,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
           category: 'Bakery',
           price: 18.50,
           quantity: 12,
-          image: 'assets/bread.jpg',
+          image: 'assets/images/products/bread.jpg',
           status: 'Available',
         ),
         Product(
@@ -52,7 +52,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
           category: 'Dairy',
           price: 32.99,
           quantity: 4,
-          image: 'assets/milk.jpg',
+          image: 'assets/images/products/milk.jpg',
           status: 'Low Stock',
         ),
         Product(
@@ -61,7 +61,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
           category: 'Household',
           price: 79.99,
           quantity: 0,
-          image: 'assets/washing_powder.jpg',
+          image: 'assets/images/products/washing_powder.jpg',
           status: 'Out of Stock',
         ),
         Product(
@@ -70,7 +70,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
           category: 'Electronics',
           price: 199.99,
           quantity: 8,
-          image: 'assets/keyboard.jpg',
+          image: 'assets/images/products/keyboard.jpg',
           status: 'Available',
         ),
       ];
@@ -125,7 +125,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('SmartMart Inventory'),
+        title: const Text('SmartMart Retailers'),
         centerTitle: true,
       ),
 

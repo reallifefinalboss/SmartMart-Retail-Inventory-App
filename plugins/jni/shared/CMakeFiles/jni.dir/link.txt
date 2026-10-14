@@ -1,0 +1,1 @@
+/usr/bin/cc -fPIC -g -shared -Wl,--dependency-file=CMakeFiles/jni.dir/link.d -Wl,-soname,libdartjni.so -o libdartjni.so CMakeFiles/jni.dir/dartjni.c.o CMakeFiles/jni.dir/third_party/global_jni_env.c.o CMakeFiles/jni.dir/include/dart_api_dl.c.o  -Wl,-rpath,/usr/lib/jvm/default/lib/server /usr/lib/jvm/default/lib/server/libjvm.so
