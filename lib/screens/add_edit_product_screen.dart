@@ -88,26 +88,39 @@ class _AddEditProductScreenState
 
     String code = codeController.text.trim();
 
-    if (widget.product == null) {
-      // ADD PRODUCT
+    // Check for duplicate product code (excluding current product when editing)
+    bool codeExists = products.any(
+      (product) =>
+          product.productCode == code &&
+          (widget.product == null || product.productCode != widget.product!.productCode),
+    );
 
-      bool codeExists = products.any(
-        (product) => product.productCode == code,
+    if (codeExists) {
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Product code already exists.',
+          ),
+        ),
       );
 
-      if (codeExists) {
-        if (!mounted) return;
+      return;
+    }
 
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text(
-              'Product code already exists.',
-            ),
-          ),
-        );
+    // Auto-determine status based on quantity
+    String status = selectedStatus!;
+    if (quantity == 0) {
+      status = 'Out of Stock';
+    } else if (quantity < 5) {
+      status = 'Low Stock';
+    } else {
+      status = 'Available';
+    }
 
-        return;
-      }
+    if (widget.product == null) {
+      // ADD PRODUCT
 
       Product newProduct = Product(
         productCode: code,
@@ -116,7 +129,7 @@ class _AddEditProductScreenState
         price: price,
         quantity: quantity,
         image: selectedImage,
-        status: selectedStatus!,
+        status: status,
       );
 
       products.add(newProduct);
@@ -129,7 +142,7 @@ class _AddEditProductScreenState
       widget.product!.category = selectedCategory!;
       widget.product!.price = price;
       widget.product!.quantity = quantity;
-      widget.product!.status = selectedStatus!;
+      widget.product!.status = status;
       widget.product!.image = selectedImage;
 
       int index = products.indexWhere(
@@ -324,19 +337,13 @@ class _AddEditProductScreenState
 
               const SizedBox(height: 20),
 
-              const Text(
-                'Product Image',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-
-              const SizedBox(height: 10),
-
-              DropdownButton<String>(
-                value: selectedImage,
+              DropdownButtonFormField<String>(
+                initialValue: selectedImage,
                 isExpanded: true,
+                decoration: const InputDecoration(
+                  labelText: 'Product Image',
+                  border: OutlineInputBorder(),
+                ),
                 items: [
                   'apple.jpg',
                   'bananas.jpg',
@@ -370,6 +377,12 @@ class _AddEditProductScreenState
                   setState(() {
                     selectedImage = value!;
                   });
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please select an image';
+                  }
+                  return null;
                 },
               ),
 

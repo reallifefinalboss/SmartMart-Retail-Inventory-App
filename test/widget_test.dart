@@ -1,31 +1,43 @@
 // test/widget_test.dart
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:smartmart_retail_inventory/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
+  testWidgets('App loads and displays title and FAB', (WidgetTester tester) async {
+    // Build our app
     await tester.pumpWidget(const RetailInventoryApp());
+    await tester.pumpAndSettle();
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify the app title
+    expect(find.text('SmartMart Retailers'), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
+    // Verify the floating action button is present
+    expect(find.byIcon(Icons.add), findsOneWidget);
+
+    // Verify we see either sample products or empty state
+    final sampleProductFinder = find.text('Coca-Cola 2L');
+    final emptyFinder = find.text('No products available');
+
+    expect(
+      sampleProductFinder.evaluate().isNotEmpty || emptyFinder.evaluate().isNotEmpty,
+      isTrue,
+      reason: 'Should show either sample products or empty state message',
+    );
+  });
+
+  testWidgets('Tapping FAB navigates to add product screen',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const RetailInventoryApp());
+    await tester.pumpAndSettle();
+
+    // Tap the FAB
     await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    await tester.pumpAndSettle();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verify we navigate to the add product screen
+    expect(find.text('Add Product'), findsOneWidget);
+    expect(find.text('Edit Product'), findsNothing);
   });
 }

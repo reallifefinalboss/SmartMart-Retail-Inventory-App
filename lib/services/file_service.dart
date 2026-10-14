@@ -1,10 +1,12 @@
 import 'dart:io';
+import 'package:path_provider/path_provider.dart';
 import '../models/product.dart';
 
 class FileService {
   // Get the application's local directory
   static Future<File> getFile() async {
-    final file = File("${Directory.current.path}/data/products.txt");
+    final directory = await getApplicationDocumentsDirectory();
+    final file = File('${directory.path}/products.txt');
 
     return file;
   }
@@ -13,12 +15,7 @@ class FileService {
   static Future<List<Product>> loadProducts() async {
     final file = await getFile();
 
-// Check if the file exists, if not create it and return an empty list
-    if (!await file.parent.exists()) {
-      await file.parent.create(recursive: true);
-    }
-
-// Check if the file exists, if not create it and return an empty list
+    // Check if the file exists, if not create it and return an empty list
     if (!await file.parent.exists()) {
       await file.parent.create(recursive: true);
     }
@@ -45,7 +42,7 @@ class FileService {
         try {
           products.add(Product.fromFileString(line));
         } catch (e) {
-          print('Could not read product: $line');
+          // Silently skip malformed lines
         }
       }
     }

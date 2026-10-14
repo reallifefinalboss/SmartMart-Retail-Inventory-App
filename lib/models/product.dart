@@ -19,9 +19,9 @@ class Product {
   });
 
   // Convert the Product object into one line
-  // that can be saved in products.txt
+  // that can be saved in products.txt (7 fields: code,name,category,price,quantity,status,image)
   String toFileString() {
-    return '$productCode,$productName,$category,$price,$quantity,$status';
+    return '$productCode,$productName,$category,$price,$quantity,$status,$image';
   }
 
   // Convert one line from products.txt
@@ -29,13 +29,16 @@ class Product {
   static Product fromFileString(String line) {
     List<String> data = line.split(',');
 
+    // Handle both old format (6 fields) and new format (7 fields)
+    String imagePath = data.length > 6 ? data[6] : getImageForProduct(data[0]);
+
     return Product(
       productCode: data[0],
       productName: data[1],
       category: data[2],
       price: double.parse(data[3]),
       quantity: int.parse(data[4]),
-      image: getImageForProduct(data[0]),
+      image: imagePath,
       status: data[5],
     );
   }

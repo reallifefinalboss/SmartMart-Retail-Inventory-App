@@ -17,6 +17,14 @@ class ProductDetailScreen extends StatefulWidget {
 }
 
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
+  late Product product;
+
+  @override
+  void initState() {
+    super.initState();
+    product = widget.product;
+  }
+
   Future<void> deleteProduct() async {
     bool? confirm = await showDialog<bool>(
       context: context,
@@ -25,7 +33,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           title: const Text('Delete Product'),
           content: Text(
             'Are you sure you want to delete '
-            '${widget.product.productName}?',
+            '${product.productName}?',
           ),
           actions: [
             TextButton(
@@ -49,8 +57,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       List<Product> products = await FileService.loadProducts();
 
       products.removeWhere(
-        (product) =>
-            product.productCode == widget.product.productCode,
+        (p) => p.productCode == product.productCode,
       );
 
       await FileService.saveProducts(products);
@@ -63,8 +70,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Product product = widget.product;
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Product Details'),
@@ -142,7 +147,17 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         ),
                       );
 
-                      setState(() {});
+                      // Reload product from file after edit
+                      final products = await FileService.loadProducts();
+                      final updatedProduct = products.firstWhere(
+                        (p) => p.productCode == product.productCode,
+                        orElse: () => product,
+                      );
+                      if (mounted) {
+                        setState(() {
+                          product = updatedProduct;
+                        });
+                      }
                     },
                     icon: const Icon(Icons.edit),
                     label: const Text('Edit'),

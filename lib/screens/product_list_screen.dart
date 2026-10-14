@@ -83,16 +83,29 @@ class _ProductListScreenState extends State<ProductListScreen> {
     });
   }
 
-  // Delete a product
-  Future<void> deleteProduct(int index) async {
+  // Delete a product by product code (avoids race condition with list indices)
+  Future<void> deleteProduct(String productCode) async {
+    // Find product name for confirmation dialog
+    final product = products.firstWhere(
+      (p) => p.productCode == productCode,
+      orElse: () => Product(
+        productCode: '',
+        productName: 'Unknown',
+        category: '',
+        price: 0,
+        quantity: 0,
+        image: '',
+        status: '',
+      ),
+    );
+
     bool? confirm = await showDialog<bool>(
       context: context,
       builder: (context) {
         return AlertDialog(
           title: const Text('Delete Product'),
           content: Text(
-            'Are you sure you want to delete '
-            '${products[index].productName}?',
+            'Are you sure you want to delete ${product.productName}?',
           ),
           actions: [
             TextButton(
@@ -114,7 +127,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
 
     if (confirm == true) {
       setState(() {
-        products.removeAt(index);
+        products.removeWhere((p) => p.productCode == productCode);
       });
 
       await FileService.saveProducts(products);
@@ -188,7 +201,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                     },
 
                     onLongPress: () {
-                      deleteProduct(index);
+                      deleteProduct(product.productCode);
                     },
                   ),
                 );
