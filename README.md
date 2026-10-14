@@ -108,16 +108,16 @@
 - [x] The submitted application must contain **at least five sample product records** for demonstration and testing  
 
 ## ✅ Expected Deliverables  
-- [ ] Complete Flutter project source code submitted as a ZIP file  
+- [x] Complete Flutter project source code submitted as a ZIP file (`SmartMart-Retail-Inventory-App.zip`)
 - [x] A **sample `products.txt`** file containing ≥ 5 records  
 - [x] All **local product images** used by the app placed in the correct `assets/` folder  
-- [ ] A short document listing the **names and student numbers** of all group members  
-- [ ] **Screenshots** showing:   
+- [ ] A short document listing the **names and student numbers** of all group members (draft: [GROUP_MEMBERS.md](GROUP_MEMBERS.md); remaining roster details are not available)
+- [x] **Screenshots** showing:
   - Product List screen   
   - Product Detail screen   
   - Add/Edit form   
   - Delete confirmation dialog   
-- [ ] A **working application** ready for practical demonstration  
+- [x] A **working application** ready for practical demonstration
 
 ## ✅ Practical Demonstration  
 - [ ] Show that the app can:   
@@ -137,8 +137,8 @@
 - [x] `products.txt` is **read when the app starts**  
 - [x] `products.txt` is **updated after changes**  
 - [x] All images **display correctly**  
-- [ ] All required **screenshots are included**  
-- [ ] The Flutter project has been **zipped for submission**  
+- [x] All required **screenshots are included** in `screenshots/`
+- [x] The Flutter project has been **zipped for submission** as `SmartMart-Retail-Inventory-App.zip`
 - [ ] Every group member is **prepared to participate** in the demonstration  
 
 ---  
